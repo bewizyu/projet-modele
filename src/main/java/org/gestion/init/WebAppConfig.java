@@ -1,4 +1,5 @@
 package org.gestion.init;
+
 import org.gestion.config.DataSourceMySQLConfig;
 import org.gestion.config.JpaConfig;
 import org.gestion.config.ServicesConfig;
@@ -23,15 +24,17 @@ public class WebAppConfig {
 	public ViewResolver viewResolver() {
 		return new InternalResourceViewResolver("/WEB-INF/views/", ".jsp");
 	}
-	
+
 	@Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurerAdapter() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE")
-                        .allowedHeaders("Content-Type");
-            }
-        };
-    }
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurerAdapter() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**")
+						.allowedOrigins("*")
+						.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE")
+						.allowedHeaders("Content-Type");
+			}
+		};
+	}
 }

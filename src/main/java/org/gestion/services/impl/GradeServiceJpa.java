@@ -1,36 +1,37 @@
-package org.gestion.services;
+package org.gestion.services.impl;
 
-import java.util.List;
+import org.gestion.entite.Grade;
+import org.gestion.services.IGradeService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
-import org.gestion.entite.Grade;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+@Service(value = "gradeServiceJpa")
+public class GradeServiceJpa implements IGradeService {
 
-@Service
-public class GradeServiceJpa implements GradeService {
-
-	@PersistenceContext 
+	@PersistenceContext
 	private EntityManager em;
 
 	@Override
 	@Transactional
-	public void sauvegarder(Grade nvGrade) {
+	public Grade create(Grade nvGrade) {
 		em.persist(nvGrade);
+		return nvGrade;
 	}
 
 	@Override
 	@Transactional
-	public void mettreAJour(Grade grade) {
+	public void update(Grade grade) {
 		Query query = em.createQuery("FROM Grade c WHERE c.code=:code");
 		query.setParameter("code", grade.getCode());
-		
+
 		List<Grade> oldGrades = query.getResultList();
-		if (!oldGrades.isEmpty()){
+		if (!oldGrades.isEmpty()) {
 			Grade oldGrade = oldGrades.get(0);
 			oldGrade.setCode(grade.getCode());
 			oldGrade.setTauxBase(grade.getTauxBase());
@@ -41,9 +42,19 @@ public class GradeServiceJpa implements GradeService {
 	}
 
 	@Override
-	public List<Grade> lister() {
+	public List<Grade> getGrades() {
 		TypedQuery<Grade> query = em.createQuery("FROM Grade", Grade.class);
-	    return query.getResultList();
+		return query.getResultList();
+	}
+
+	@Override
+	public void deleteGrade(int id) {
+		throw new Error("Not yet implemented");
+	}
+
+	@Override
+	public Grade getGradeById(int id) {
+		throw new Error("Not yet implemented yet");
 	}
 
 }

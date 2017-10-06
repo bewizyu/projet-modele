@@ -1,31 +1,35 @@
 package org.gestion.config;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-/** Classe de type Spring JAVA Config pour créer une instance de DataSource
+import javax.sql.DataSource;
+
+/**
+ * Classe de type Spring JAVA Config pour créer une instance de DataSource
+ *
  * @author DIGINAMIC
  */
 @Configuration
 public class DataSourceMySQLConfig {
-	
+
 	@Value("${spring.datasource.driver-class-name}")
 	private String driver;
-	
+
 	@Value("${spring.datasource.url}")
 	private String url;
-	
+
 	@Value("${spring.datasource.username}")
 	private String username;
-	
+
 	@Value("${spring.datasource.password}")
 	private String password;
-	
-	/** Création de la DataSource qui pointe sur la BDD MySQL spring-test
+
+	/**
+	 * Création de la DataSource qui pointe sur la BDD MySQL spring-test
+	 *
 	 * @return {@link DataSource}
 	 */
 	@Bean
