@@ -1,0 +1,161 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Java-projet-model",
+		"_postman_id": "5fef1556-65b9-0961-13cd-eeb4c6bdb264",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Grades with JPA",
+			"request": {
+				"url": "http://localhost:8080/atelier/mvc/grades/withJpa",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create Grade",
+			"request": {
+				"url": "http://localhost:8080/atelier/mvc/grades/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"code\": \"CODE_TEST\",\n\t\"nbHeuresBase\" : 15,\n\t\"tauxBase\": 1\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update Grade",
+			"request": {
+				"url": "http://localhost:8080/atelier/mvc/grades/",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n\t\"code\": \"UPDATE\",\n\t\"nbHeuresBase\" : 55,\n\t\"tauxBase\": 5\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Grade",
+			"request": {
+				"url": "http://localhost:8080/atelier/mvc/grades/1",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Grades with Repository",
+			"request": {
+				"url": "http://localhost:8080/atelier/mvc/grades/withRepository",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Grade By ID Path-Param",
+			"request": {
+				"url": "http://localhost:8080/atelier/mvc/grades/2/path-param",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Grade By ID Query-param",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/atelier/mvc/grades/query-param?idGrade=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"atelier",
+						"mvc",
+						"grades",
+						"query-param"
+					],
+					"query": [
+						{
+							"key": "idGrade",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

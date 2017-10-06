@@ -42,23 +42,23 @@ public class RestGradeController {
 	// ******* GET GRADES BY ID ********** //
 	// *********************************** //
 
-	@RequestMapping(path = "/grades/{idGrade}/path-param", method = RequestMethod.GET)
+	@RequestMapping(path = "/{idGrade}/path-param", method = RequestMethod.GET)
 	@ResponseBody
-	public Grade getGradeByIdWithPathParam(@PathVariable("idGrade") int idGrade) {
-		return gradeServiceRepository.getGradeById(idGrade);
+	public Grade getGradeByIdWithPathParam(@PathVariable("idGrade") String idGrade) {
+		return gradeServiceRepository.getGradeById(Integer.parseInt(idGrade));
 	}
 
-	@RequestMapping(path = "/grades/query-param", method = RequestMethod.GET)
+	@RequestMapping(path = "/query-param", method = RequestMethod.GET)
 	@ResponseBody
-	public Grade getGradeByIdWithQueryParam(@RequestParam("idGrade") int idGrade) {
-		return gradeServiceRepository.getGradeById(idGrade);
+	public Grade getGradeByIdWithQueryParam(@RequestParam("idGrade") String idGrade) {
+		return gradeServiceRepository.getGradeById(Integer.parseInt(idGrade));
 	}
 
 	// *********************************** //
 	// ********** CREATE GRADES ********** //
 	// *********************************** //
 
-	@RequestMapping(method = RequestMethod.POST, path = "/", consumes = "application/json;charset=UTF-8")
+	@RequestMapping(path = "/", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
 	public Grade createGrade(@RequestBody Grade newGrade) {
 		return gradeServiceJpa.create(newGrade);
 	}
@@ -67,14 +67,22 @@ public class RestGradeController {
 	// ******* UPDATE GRADE BY ID ******** //
 	// *********************************** //
 
-	@RequestMapping(path = "/grades", method = RequestMethod.PUT)
+	@RequestMapping(path = "/", method = RequestMethod.PUT, consumes = "application/json;charset=UTF-8")
 	@ResponseBody
 	public void updateGrade(@RequestBody Grade updateGrade) {
 		gradeServiceRepository.update(updateGrade);
 	}
 
+
 	//
 	// *********************************** //
 	// ******* DELETE GRADE BY ID ******** //
 	// *********************************** //
+
+	@RequestMapping(path = "/{idGrade}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public void deleteGrade(@PathVariable("idGrade") String idGrade) {
+		gradeServiceRepository.deleteGrade(Integer.parseInt(idGrade));
+
+	}
 }
